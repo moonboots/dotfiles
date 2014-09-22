@@ -1,0 +1,81 @@
+# # Increase volume
+# "amixer set Master playback 1+"
+#     m:0x0 + c:123
+#     XF86AudioRaiseVolume
+
+# # Decrease volume
+# "amixer set Master playback 1-"
+#     m:0x0 + c:122
+#     XF86AudioLowerVolume
+
+# # Toggle mute
+# "amixer set Master toggle"
+#     m:0x0 + c:121
+#     XF86AudioMute
+
+# # vol up
+# "amixer set Master playback 1000+"
+#   m:0x0 + c:123
+  
+# # vol dn
+# "amixer set Master playback 1000-"
+#   m:0x0 + c:122
+
+# # vol mute/unmute
+# "amixer set Master toggle"
+#   m:0x0 + c:121
+
+# # vol up
+# "amixer set Master 2dB+ unmute"
+#   m:0x0 + c:123
+# # "/usr/bin/vol_up"
+  
+# # vol dn
+# "amixer set Master 2dB- unmute"
+#   m:0x0 + c:122
+# # "/usr/bin/vol_down"
+
+# # vol mute/unmute
+# "amixer set Master toggle"
+#   m:0x0 + c:121
+# # "/usr/bin/mute_toggle"
+
+# # vol up
+# "/usr/bin/pulseaudio-ctl up"
+#   m:0x0 + c:123
+# # "/usr/bin/vol_up"
+  
+# # vol dn
+# "/usr/bin/pulseaudio-ctl down"
+#   m:0x0 + c:122
+# # "/usr/bin/vol_down"
+
+# # vol mute/unmute
+# "/usr/bin/pulseaudio-ctl mute"
+#   m:0x0 + c:121
+# # "/usr/bin/mute_toggle"
+
+# vol up
+"/usr/bin/pactl set-sink-volume 0 -- +5%"
+  m:0x0 + c:123
+  
+# vol dn
+"/usr/bin/pactl set-sink-volume 0 -- -5%"
+  m:0x0 + c:122
+
+# vol mute/unmute
+"/usr/bin/pactl set-sink-mute 0 toggle"
+  m:0x0 + c:121
+
+## play/pause
+#"audacious -t"
+#  m:0x10 + c:162
+## back
+#"audacious -r"
+#  m:0x10 + c:144
+## forward
+#"audacious -f"
+#  m:0x10 + c:153
+## stop
+#"audacious -s"
+#  m:0x10 + c:164

@@ -1,0 +1,5 @@
+Control-g: shell-expand-line
+# set enable-keypad off
+#Space: magic-space
+#Control-]:
+#bind -r Ctrl-]

@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+process=$(systemctl --user status | grep -Eo "chrome-$1-[0-9]+.service")
+systemctl --user stop $process

@@ -1,0 +1,66 @@
+#!/bin/sh
+# like vimscrypt but backups old file on changes
+export PATH=/bin:/usr/bin
+# vim=$HOME/local/vim/bin/vim
+vim=$(which vim)
+set -eu
+
+if [ "$1" == "" ]; then
+  printf "Usage: $0 [path to scrypt encrypted file]\n"
+  exit 1
+fi
+
+ENCRYPTED=$1
+
+umask 077
+TMPDIR="$(mktemp -d /tmp/mytempfile.XXXXXX)"
+DECRYPTED=$TMPDIR/decrypted
+TMP_ENCRYPTED=$TMPDIR/encrypted
+open_time=$(date +%s)
+
+cleanup() {
+  printf "Cleaning up\n"
+  [ -f $DECRYPTED ] && shred -uz $DECRYPTED
+  [ -f $TMP_ENCRYPTED ] && shred -uz $TMP_ENCRYPTED
+  [ -d $TMPDIR ] && rmdir $TMPDIR
+  sync
+}
+
+trap cleanup INT TERM EXIT
+
+if [ ! -f "$ENCRYPTED" ]; then
+  printf "Creating new encrypted file: $ENCRYPTED\n"
+  touch $ENCRYPTED
+  CREATE="true"
+  initial_sha=""
+else
+  printf "Decrypting\n"
+  scrypt dec $ENCRYPTED $DECRYPTED
+  initial_sha=$(sha256sum $DECRYPTED)
+  CREATE="false"
+fi
+
+$vim -c "set nobackup" \
+  -c "set noswapfile" \
+  -c "set nowritebackup" \
+  -c "set nocompatible" \
+  -c "set backspace=2" \
+  -u NONE $DECRYPTED
+
+if [ "$CREATE" == "true" -o "$initial_sha" != "$(sha256sum $DECRYPTED)" ]; then
+  # first encrypt to temporary location
+  # if user cancels, original encrypted will remain unmodified
+  printf "Encrypting\n"
+  scrypt enc $DECRYPTED $TMP_ENCRYPTED
+
+  if [ ! "$CREATE" == "true" ]; then
+    printf "Backing up previous file to $ENCRYPTED.$open_time\n"
+    cp $ENCRYPTED $ENCRYPTED.$open_time
+  fi
+
+  mv $TMP_ENCRYPTED $ENCRYPTED
+
+  printf "Saving updated file to $ENCRYPTED\n"
+else
+  printf "No updates, not saving\n"
+fi

@@ -1,0 +1,10 @@
+# Contains path functionality common across systems
+
+[ -f ~/.bash_path.system_dependent ] && source ~/.bash_path.system_dependent
+
+# idempotent sourcing
+# Splits into multiple lines, removes duplicate lines while preserving order, join together
+# awk portion copied from http://unstableme.blogspot.com/2008/03/remove-duplicates-without-sorting-file.html
+export PATH=$(echo $PATH | tr ':' '\n' | sed '/^$/d' | awk '!x[$0]++'| tr '\n' ':')
+
+# vim: set ft=sh:

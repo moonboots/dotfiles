@@ -1,0 +1,13 @@
+#!/bin/sh
+set -o nounset
+set -o verbose
+set -o errexit
+
+if [ $# -ne 2 ]; then
+  echo "Usage: git-punt <sha1> <branch to punt to>"
+fi
+
+if ! git rev-parse --git-dir; then
+  echo "Not in a git directory"
+  exit 1
+fi

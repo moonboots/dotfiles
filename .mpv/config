@@ -1,0 +1,12 @@
+# Write your default config options here!
+# vo=vaapi
+# hwdec=auto
+vo=opengl
+hwdec=vaapi
+really-quiet
+softvol-max=400
+softvol=yes
+osc=no
+sub-text-margin-y=100
+sub-text-color=1.0/1.0/1.0/0.7
+osd-color=1.0/1.0/1.0/0.2

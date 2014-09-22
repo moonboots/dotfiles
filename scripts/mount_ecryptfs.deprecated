@@ -1,0 +1,43 @@
+#!/bin/sh -eu
+#
+# Loads encrypted ecryptfs password into keyring, mounts ecryptfs, unloads password
+export PATH=/bin:/usr/bin
+
+usage() {
+  echo "Ecryptfs mount settings should already be in fstab"
+  echo "Usage: $0 [path to scrypt encrypted file] [path to mount]"
+  exit 1
+}
+
+type shred >/dev/null 2>&1 || { echo >&2 "shred command is required, exiting"; exit 1; }
+
+if [ "$1" = "" ]; then
+  usage
+fi
+
+if [ "$2" = "" ]; then
+  usage
+fi
+
+ENCRYPTED=$1
+MOUNT=$2
+
+umask 077
+prefix=/tmp/mount_ecryptfs
+TMPDIR="$(mktemp -d $prefix.XXXXXX)"
+DECRYPTED=$TMPDIR/decrypted
+
+cleanup() {
+  find ${prefix}.* -type f -exec shred -uz {} \; || true
+  rmdir $prefix.* || true
+  sync || true
+  keyctl clear @u
+}
+
+
+# scrypt=/home/jack/local/scrypt/bin/scrypt
+scrypt=/usr/bin/scrypt
+
+$scrypt dec $ENCRYPTED $DECRYPTED
+cat $DECRYPTED | ecryptfs-add-passphrase
+mount -i $MOUNT

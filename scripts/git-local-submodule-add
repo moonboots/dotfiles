@@ -1,0 +1,29 @@
+#!/bin/sh
+# Adds local repo as submodule, changes submodule url to local's origin
+# Use case: I already have a local clone of twitter's bootstrap repository. I want to add it as a submodule to a new project. Adding my local clone (instead of directly from github) lets git hard link the files to save disk space. However, I still want the submodule to track github for future updates. This script first adds the local repo as a submodule and then redirects submodule url to github.
+
+set -o errexit
+
+local_repo=$(readlink -m $1)
+new_repo_name=$2
+
+git submodule add $local_repo $new_repo_name
+
+pushd $local_repo
+
+# Regex below tranforms the git remote -v output
+#
+#   origin  git://github.com/twitter/bootstrap.git (fetch)
+#   origin  git://github.com/twitter/bootstrap.git (push)
+# 
+# into
+#   
+#   git://github.com/twitter/bootstrap.git origin 
+#
+# Doesn't handle multiple remotes yet
+remote_url=$(git remote -v | sed 's/^\(\S\+\)\s\+\(\S\+\).*$/\2/g' | uniq | grep github)
+
+popd
+
+sed -i "s#$local_repo#$remote_url#" .gitmodules
+git submodule sync

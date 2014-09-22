@@ -1,0 +1,9 @@
+.DS_Store
+tags
+*~
+*.swp
+.VimballRecord
+.netrwhist
+bundle/vim-peepopen
+.svn
+databases

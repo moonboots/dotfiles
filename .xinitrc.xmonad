@@ -1,0 +1,66 @@
+#!/bin/sh
+# set -eu
+#
+# ~/.xinitrc
+#
+# Executed by startx (run your window manager from here)
+
+# #exec ck-launch-session gnome-session
+# if [ -d /etc/X11/xinit/xinitrc.d ]; then
+#   for f in /etc/X11/xinit/xinitrc.d/*; do
+#     [ -x "$f" ] && . "$f"
+#   done
+#   unset f
+# fi
+
+# exec gnome-session
+# exec startkde
+# exec startxfce4
+# ...or the Window Manager of your choice
+
+# no longer needed, created custom keyboard mapping
+# # Remap keys
+# xcalib -d :0 /home/jack/.wine/drive_c/DRIVERS/WIN/MONITOR/TPMB60.ICM
+
+# Bind laptop multimedia keys
+xbindkeys
+
+# start-pulseaudio-x11 &
+
+# # # Add additional fonts to path
+# # xset +fp /usr/share/fonts/local
+# # xset fp rehash
+
+#xsetroot -cursor_name left_ptr
+
+# wallpaper
+xloadimage -onroot -fullscreen "$HOME/bgs/$(ls ~/bgs | shuf | head -n 1)"
+
+# xrdb -merge ~/.Xresources
+
+# xmodmap $HOME/.Xmodmap
+# $HOME/code3/xcape/xcape
+
+# keycode 66 is currently capslock/control when using XkbOptions caps:ctrl_modifier
+$HOME/code3/xcape/xcape -e '#66=Escape'
+
+# export XMODIFIERS=@im=SCIM
+# export GTK_IM_MODULE="scim"
+# export QT_IM_MODULE="scim"
+# scim -d
+
+# # https://mutelight.org/subtleties-of-the-x-clipboard
+# # http://www.nongnu.org/autocutsel/
+# autocutsel -fork &
+# # autocutsel -selection PRIMARY -fork &
+
+setterm -blank 0
+
+xsetroot -cursor_name left_ptr
+
+pulseaudio --start
+
+# exec ~/.cabal/bin/xmonad
+exec /home/jack/.xmonad/xmonad-x86_64-linux
+# xmonad
+# exec gnome-session-cinnamon

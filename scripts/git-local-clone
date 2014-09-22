@@ -1,0 +1,29 @@
+#!/bin/sh
+# Clones a local repository and adds original repos remotes
+
+set -o errexit
+
+local_repo=$(readlink -m $1)
+new_repo_name=$2
+
+git clone $local_repo $new_repo_name
+pushd $new_repo_name
+git remote rename origin local
+
+pushd $local_repo
+
+# Regex below tranforms the git remote -v output
+#
+#   origin  git://github.com/twitter/bootstrap.git (fetch)
+#   origin  git://github.com/twitter/bootstrap.git (push)
+# 
+# into
+#   
+#   git://github.com/twitter/bootstrap.git origin 
+#
+# Doesn't handle multiple remotes yet
+remote_urls=$(git remote -v | sed 's/^\(\S\+\)\s\+\(\S\+\).*$/\1 \2/g' | uniq)
+
+popd
+
+git remote add --fetch $remote_urls

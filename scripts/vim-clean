@@ -1,0 +1,8 @@
+#!/bin/sh
+vim=$HOME/local/vim/bin/vim
+$vim -c "set nobackup" \
+  -c "set noswapfile" \
+  -c "set nowritebackup" \
+  -c "set nocompatible" \
+  -c "set backspace=2" \
+  -u NONE $1

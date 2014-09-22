@@ -1,0 +1,98 @@
+export JAVA_HOME=/opt/java
+export JDK_HOME=$JAVA_HOME
+JAVA=$JAVA_HOME/bin
+
+export AWT_TOOLKIT=MToolkit
+jsbeautify=/home/jack/code3/js-beautify/python 
+
+node_root=$HOME/local/node
+node_bin=$node_root/bin
+#ANT=$HOME/opt/ant/bin
+export NODE_MODULES=$node_root/lib/node_modules
+export NODE_PATH=$node_root/lib:$NODE_MODULES
+
+vim=$HOME/local/vim/bin
+leiningen=/opt/leiningen/bin
+
+export EC2_PRIVATE_KEY=$HOME/secure/pk.pem
+export EC2_CERT=$HOME/secure/cert.pem
+
+ec2_root=$HOME/opt/ec2
+export EC2_HOME=$ec2_root/ec2-api-tools
+export EC2_AMITOOL_HOME=$ec2_root/ec2-ami-tools
+export EC2_JVM_ARGS="-client"
+
+go=$HOME/code3/go/bin
+urxvt=$HOME/local/rxvt-unicode/bin
+emacs=$HOME/local/emacs/bin
+
+scripts=$HOME/scripts
+# gems=$HOME/.gem/ruby/1.9.1/bin
+gems=$HOME/.gem/ruby/2.0.0/bin
+xtmux=$HOME/local/xtmux/bin
+export CLOJURESCRIPT_HOME=$HOME/code3/clojurescript
+git=$HOME/local/git/bin
+runit=$HOME/builds/runit/command
+
+pip2_home=$HOME/local/pip2
+pip2_bin=$pip2_home/bin
+export PYTHONPATH=$PYTHONPATH:$pip2_home/lib/python2.7
+
+jruby=/opt/jruby/bin
+
+# local=$HOME/local
+# c_packages="czmq zeromq snappy"
+
+# for pkg in $(echo $c_packages | tr ' ' '\n' ); do
+#   PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$local/$pkg/lib/pkgconfig
+# done
+# export PKG_CONFIG_PATH
+
+# for pkg in $(echo $c_packages | tr ' ' '\n' ); do
+#   LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$local/$pkg/lib
+# done
+# export LD_LIBRARY_PATH
+
+# export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$(echo $c_packages | sed "s#\b\(\w*\) #$local/\1/pkgconfig:#g")"
+cabal=$HOME/.cabal/bin
+ghc=$HOME/local/ghc/bin
+# cabal_dev=$HOME/code3/cabal-dev/cabal-dev/bin
+ndk=/opt/android-ndk
+export ANDROID_NDK=/opt/android-ndk
+
+# mypager() {
+#   col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnoremap i <nop>' -
+# }
+# http://zameermanji.com/blog/2012/12/30/using-vim-as-manpager/
+# export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnoremap i <nop>' -"
+# export MANPAGER="manpager"
+
+# # http://vim.wikia.com/wiki/Using_vim_as_a_man-page_viewer_under_Unix
+# export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
+#   vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
+#   -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
+#   -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
+
+git_hg=/usr/share/git/remote-helpers
+git_bzr=/home/jack/code3/git/contrib/remote-helpers
+
+export GOPATH=$HOME/code/go
+
+# leave no spaces between paths
+# export PATH=$vim:\
+export PATH=\
+$cabal:\
+$HOME/local/rust/bin:\
+/home/jack/npm/node_modules/jshint/bin:\
+$scripts:\
+$HOME/secure/code/scripts:\
+$PATH:\
+$JAVA:\
+$node_bin:\
+$git_hg:\
+$git_bzr:\
+$gems:\
+$GOPATH/bin:\
+$HOME/code/redo/redo
+
+# vim: set ft=sh:

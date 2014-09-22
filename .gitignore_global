@@ -1,0 +1,7 @@
+*.swp
+id_rsa
+id_dsa
+doc/tags
+node_modules
+npm-debug.log
+.redo

@@ -1,0 +1,9 @@
+keyremap4macbook
+https://pqrs.org/macosx/keyremap4macbook/files/KeyRemap4MacBook-9.3.0.dmg
+
+homebrew
+ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+
+remap
+remap caps lock to control in system prefs
+in keyremap4macbook, check "Control_L to Control_L (+ When you type Control_L only, send Escape)

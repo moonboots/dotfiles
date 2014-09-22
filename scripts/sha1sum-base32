@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+import hashlib, base64, sys
+input_string = sys.stdin.read()
+binary_input = input_string.encode('utf-8')
+
+h = hashlib.sha1()
+h.update(binary_input)
+print(base64.b32encode(h.digest()).decode('utf-8'))

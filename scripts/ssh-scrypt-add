@@ -1,0 +1,35 @@
+#!/bin/sh
+# adds scrypt encrypted ssh private key to authentication agent
+umask u=wr,g=,o=
+set -o noclobber
+
+if [ $# -ne 1 ]; then
+  echo "Usage: $(basename $0) [private key]"
+  exit 1
+fi
+
+if [ ! -f $1 ]; then
+  echo "$1 not a file"
+  echo "Usage: $(basename $0) [private key]"
+  exit 1
+fi
+
+# test if ssh-agent is running
+out=$(ssh-add -l 2>&1)
+if [ $? = 2 ]; then
+  # agent not running
+  echo "$out"
+  exit $?
+fi
+
+decrypted_key=/tmp/$(basename $1 | sed 's/\.scrypt$//')
+if [ -f $decrypted_key ]; then
+  echo "Temporary location for decrypted key already exists: $decrypted_key"
+  exit 1
+fi
+# decrypted_key=$(mktemp)
+trap "rm $decrypted_key" EXIT
+
+scrypt dec $1 $decrypted_key || exit 1
+ssh-add $decrypted_key
+# rm $decrypted_key

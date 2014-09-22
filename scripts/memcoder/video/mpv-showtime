@@ -1,0 +1,2 @@
+#!/bin/sh
+mpv --mute=yes --osd-level 3 --osd-bar --osd-fractions $*

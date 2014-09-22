@@ -1,0 +1,209 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "subtree/dircolors-solarized"]
+	url = https://github.com/seebi/dircolors-solarized.git
+	fetch = +refs/heads/*:refs/remotes/subtree/dircolors-solarized/*
+[remote "subtree/zsh-syntax-highlighting"]
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+	fetch = +refs/heads/*:refs/remotes/subtree/zsh-syntax-highlighting/*
+[remote "subtree/nerdtree"]
+	url = https://github.com/scrooloose/nerdtree.git
+	fetch = +refs/heads/*:refs/remotes/subtree/nerdtree/*
+[remote "subtree/Command-T"]
+	url = https://github.com/akitaonrails/Command-T.git
+	fetch = +refs/heads/*:refs/remotes/subtree/Command-T/*
+[remote "subtree/vim-fugitive"]
+	url = https://github.com/tpope/vim-fugitive.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-fugitive/*
+[remote "subtree/vim-surround"]
+	url = https://github.com/tpope/vim-surround.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-surround/*
+[remote "subtree/vim-javascript"]
+	url = https://github.com/pangloss/vim-javascript.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-javascript/*
+[remote "subtree/csapprox"]
+	url = https://github.com/godlygeek/csapprox.git
+	fetch = +refs/heads/*:refs/remotes/subtree/csapprox/*
+[remote "subtree/gundo.vim"]
+	url = https://github.com/sjl/gundo.vim.git
+	fetch = +refs/heads/*:refs/remotes/subtree/gundo.vim/*
+[remote "subtree/tabular"]
+	url = https://github.com/godlygeek/tabular.git
+	fetch = +refs/heads/*:refs/remotes/subtree/tabular/*
+[remote "subtree/vim-speeddating"]
+	url = https://github.com/tpope/vim-speeddating.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-speeddating/*
+[remote "subtree/vim-pathogen"]
+	url = https://github.com/tpope/vim-pathogen.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-pathogen/*
+[remote "subtree/vim-fakeclip"]
+	url = https://github.com/kana/vim-fakeclip.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-fakeclip/*
+[remote "subtree/vim-colors-solarized"]
+	url = https://github.com/altercation/vim-colors-solarized.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-colors-solarized/*
+[remote "subtree/patchreview-vim"]
+	url = https://github.com/junkblocker/patchreview-vim.git
+	fetch = +refs/heads/*:refs/remotes/subtree/patchreview-vim/*
+[remote "subtree/vim-commentary"]
+	url = https://github.com/tpope/vim-commentary.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-commentary/*
+[remote "subtree/vim-repeat"]
+	url = https://github.com/tpope/vim-repeat.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-repeat/*
+[remote "subtree/gitv"]
+	url = https://github.com/gregsexton/gitv.git
+	fetch = +refs/heads/*:refs/remotes/subtree/gitv/*
+[remote "subtree/vim-arpeggio"]
+	url = https://github.com/kana/vim-arpeggio.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-arpeggio/*
+[remote "subtree/threesome.vim"]
+	url = https://github.com/sjl/threesome.vim.git
+	fetch = +refs/heads/*:refs/remotes/subtree/threesome.vim/*
+[remote "subtree/ScrollColors"]
+	url = https://github.com/vim-scripts/ScrollColors.git
+	fetch = +refs/heads/*:refs/remotes/subtree/ScrollColors/*
+[remote "subtree/Color-Sampler-Pack"]
+	url = https://github.com/vim-scripts/Color-Sampler-Pack.git
+	fetch = +refs/heads/*:refs/remotes/subtree/Color-Sampler-Pack/*
+[remote "subtree/lusty"]
+	url = https://github.com/sjbach/lusty.git
+	fetch = +refs/heads/*:refs/remotes/subtree/lusty/*
+[remote "subtree/Rainbow-Parenthsis-Bundle"]
+	url = https://github.com/vim-scripts/Rainbow-Parenthsis-Bundle.git
+	fetch = +refs/heads/*:refs/remotes/subtree/Rainbow-Parenthsis-Bundle/*
+[remote "subtree/vim-abolish"]
+	url = https://github.com/tpope/vim-abolish.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-abolish/*
+[remote "subtree/vim-easymotion"]
+	url = https://github.com/Lokaltog/vim-easymotion.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-easymotion/*
+[remote "subtree/ctrlp.vim"]
+	url = https://github.com/kien/ctrlp.vim.git
+	fetch = +refs/heads/*:refs/remotes/subtree/ctrlp.vim/*
+[remote "subtree/YankRing.vim"]
+	url = https://github.com/vim-scripts/YankRing.vim.git
+	fetch = +refs/heads/*:refs/remotes/subtree/YankRing.vim/*
+[remote "subtree/closetag.vim"]
+	url = https://github.com/vim-scripts/closetag.vim.git
+	fetch = +refs/heads/*:refs/remotes/subtree/closetag.vim/*
+[remote "subtree/sparkup"]
+	url = https://github.com/rstacruz/sparkup.git
+	fetch = +refs/heads/*:refs/remotes/subtree/sparkup/*
+[remote "subtree/CamelCaseMotion"]
+	url = https://github.com/bkad/CamelCaseMotion.git
+	fetch = +refs/heads/*:refs/remotes/subtree/CamelCaseMotion/*
+[remote "subtree/argtextobj.vim"]
+	url = https://github.com/vim-scripts/argtextobj.vim.git
+	fetch = +refs/heads/*:refs/remotes/subtree/argtextobj.vim/*
+[remote "subtree/rainbow_parentheses.vim"]
+	url = https://github.com/kien/rainbow_parentheses.vim.git
+	fetch = +refs/heads/*:refs/remotes/subtree/rainbow_parentheses.vim/*
+[remote "subtree/syntastic"]
+	url = https://github.com/scrooloose/syntastic.git
+	fetch = +refs/heads/*:refs/remotes/subtree/syntastic/*
+[remote "subtree/ack.vim"]
+	url = https://github.com/mileszs/ack.vim.git
+	fetch = +refs/heads/*:refs/remotes/subtree/ack.vim/*
+[remote "subtree/mustache.vim"]
+	url = https://github.com/juvenn/mustache.vim.git
+	fetch = +refs/heads/*:refs/remotes/subtree/mustache.vim/*
+[remote "subtree/vim-unbundle"]
+	url = https://github.com/sunaku/vim-unbundle.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-unbundle/*
+[remote "subtree/vim-indent-guides"]
+	url = https://github.com/nathanaelkane/vim-indent-guides.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-indent-guides/*
+[remote "subtree/MatchTag"]
+	url = https://github.com/gregsexton/MatchTag.git
+	fetch = +refs/heads/*:refs/remotes/subtree/MatchTag/*
+[remote "subtree/UltiSnips"]
+	url = https://github.com/vim-scripts/UltiSnips.git
+	fetch = +refs/heads/*:refs/remotes/subtree/UltiSnips/*
+[remote "subtree/VimClojure"]
+	url = https://github.com/vim-scripts/VimClojure.git
+	fetch = +refs/heads/*:refs/remotes/subtree/VimClojure/*
+[remote "subtree/vim-markdown"]
+	url = https://github.com/tpope/vim-markdown.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-markdown/*
+[remote "subtree/matchit.zip"]
+	url = https://github.com/vim-scripts/matchit.zip.git
+	fetch = +refs/heads/*:refs/remotes/subtree/matchit.zip/*
+[remote "subtree/vim-eunuch"]
+	url = https://github.com/tpope/vim-eunuch.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-eunuch/*
+[remote "subtree/AutoClose"]
+	url = https://github.com/vim-scripts/AutoClose.git
+	fetch = +refs/heads/*:refs/remotes/subtree/AutoClose/*
+[remote "subtree/JavaScript-syntax"]
+	url = https://github.com/vim-scripts/JavaScript-syntax.git
+	fetch = +refs/heads/*:refs/remotes/subtree/JavaScript-syntax/*
+[remote "subtree/vim-smartinput"]
+	url = https://github.com/kana/vim-smartinput.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-smartinput/*
+[remote "subtree/vim-pasta"]
+	url = https://github.com/sickill/vim-pasta.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-pasta/*
+[remote "subtree/vim-less"]
+	url = https://github.com/groenewege/vim-less.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-less/*
+[remote "subtree/vim-css-color"]
+	url = https://github.com/skammer/vim-css-color.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-css-color/*
+[remote "subtree/zencoding-vim"]
+	url = https://github.com/mattn/zencoding-vim.git
+	fetch = +refs/heads/*:refs/remotes/subtree/zencoding-vim/*
+[remote "subtree/dbext.vim"]
+	url = https://github.com/vim-scripts/dbext.vim.git
+	fetch = +refs/heads/*:refs/remotes/subtree/dbext.vim/*
+[remote "subtree/a.vim"]
+	url = https://github.com/vim-scripts/a.vim.git
+	fetch = +refs/heads/*:refs/remotes/subtree/a.vim/*
+[remote "subtree/vim-paren-crosshairs"]
+	url = https://github.com/chreekat/vim-paren-crosshairs.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-paren-crosshairs/*
+[remote "subtree/vim-jade"]
+	url = https://github.com/digitaltoad/vim-jade.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-jade/*
+[remote "subtree/unite.vim"]
+	url = https://github.com/Shougo/unite.vim.git
+	fetch = +refs/heads/*:refs/remotes/subtree/unite.vim/*
+[remote "subtree/vim-coffee-script"]
+	url = https://github.com/kchmck/vim-coffee-script.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-coffee-script/*
+[remote "subtree/vim-characterize"]
+	url = https://github.com/tpope/vim-characterize.git
+	fetch = +refs/heads/*:refs/remotes/subtree/vim-characterize/*
+[remote "subtree/bufexplorer"]
+	url = https://github.com/jlanzarotta/bufexplorer.git
+	fetch = +refs/heads/*:refs/remotes/subtree/bufexplorer/*
+[remote "jack"]
+	url = /home/jack/arch-tree/home/jack/code/dotfiles-new.git
+	fetch = +refs/heads/*:refs/remotes/jack/*
+[remote "subtree/evil"]
+	url = git://gitorious.org/evil/evil.git
+	fetch = +refs/heads/*:refs/remotes/subtree/evil/*
+[remote "subtree/emacs-http-server"]
+	url = https://github.com/skeeto/emacs-http-server.git
+	fetch = +refs/heads/*:refs/remotes/subtree/emacs-http-server/*
+[remote "subtree/js2-mode"]
+	url = https://github.com/mooz/js2-mode.git
+	fetch = +refs/heads/*:refs/remotes/subtree/js2-mode/*
+[remote "subtree/browse-kill-ring"]
+	url = https://github.com/browse-kill-ring/browse-kill-ring.git
+	fetch = +refs/heads/*:refs/remotes/subtree/browse-kill-ring/*
+[remote "subtree/nrepl.el"]
+	url = https://github.com/clojure-emacs/nrepl.el.git
+	fetch = +refs/heads/*:refs/remotes/subtree/nrepl.el/*
+[remote "subtree/skewer-mode"]
+	url = https://github.com/skeeto/skewer-mode.git
+	fetch = +refs/heads/*:refs/remotes/subtree/skewer-mode/*
+[remote "subtree/clojure-mode"]
+	url = https://github.com/clojure-emacs/clojure-mode.git
+	fetch = +refs/heads/*:refs/remotes/subtree/clojure-mode/*
+[remote "bitbucket"]
+	url = bitbucket:moonboots/dotfiles-new
+	fetch = +refs/heads/*:refs/remotes/bitbucket/*

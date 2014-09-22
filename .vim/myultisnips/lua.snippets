@@ -1,0 +1,78 @@
+#################################
+# Snippets for the Lua language #
+#################################
+snippet #! "Shebang header" b
+#!/usr/bin/env lua
+$0
+endsnippet
+
+snippet !fun(ction)?! "New function" br
+function ${1:new_function}(${2:args})
+   $0
+end
+endsnippet
+
+snippet forp "pair for loop" b
+for ${1:name},${2:val} in pairs(${3:table_name}) do
+   $0
+end
+endsnippet
+
+snippet fori "ipair for foop" b
+for ${1:idx},${2:val} in ipairs(${3:table_name}) do
+   $0
+end
+endsnippet
+
+snippet for "numeric for loop" b
+for ${1:i}=${2:first},${3:last}${4/^..*/(?0:,:)/}${4:step} do
+   $0
+end
+endsnippet
+
+snippet local "local x = 1"
+local ${1:x} = ${0:1}
+endsnippet
+
+snippet if
+if $1 then
+	$2
+end
+endsnippet
+
+snippet ife
+if $1 then
+	$2
+else
+	$3
+end
+endsnippet
+
+snippet f
+function ($1)
+	$2
+end
+endsnippet
+
+# snippet nl "nginx lua log" !b
+# nginx.log($0)
+# endsnippet
+
+global !p
+def complete(t, opts):
+  if t:
+    opts = [ m[len(t):] for m in opts if m.startswith(t) ]
+  if len(opts) == 1:
+    return opts[0]
+  return "(" + "|".join(opts) + ")"
+endglobal
+
+snippet nl "nginx log level" !b
+ngx.log(ngx.$1`!p snip.rv = complete(t[1], ['STDERR','EMERG','ALERT','CRIT','ERR','WARN','NOTICE','INFO','DEBUG'])`, $0)
+endsnippet
+
+snippet http "Http status constants"
+ngx.HTTP_$1`!p snip.rv = complete(t[1], ['OK','CREATED','SPECIAL_RESPONSE','MOVED_PERMANENTLY','MOVED_TEMPORARILY','SEE_OTHER','NOT_MODIFIED','BAD_REQUEST','UNAUTHORIZED','FORBIDDEN','NOT_FOUND','NOT_ALLOWED','GONE','INTERNAL_SERVER_ERROR','METHOD_NOT_IMPLEMENTED','SERVICE_UNAVAILABLE','GATEWAY_TIMEOUT'])`
+endsnippet
+
+# vim:ft=snippets:

@@ -1,0 +1,32 @@
+[core]
+	editor = vim
+	preloadindex = true
+	excludesfile = /home/jack/.gitignore_global
+[user]
+	name = Jack
+  email = "<>"
+[color "interactive"]
+	prompt = green bold
+[color "status"]
+	added = green
+	changed = yellow
+	updated = green
+	untracked = magenta
+[color]
+	ui = true
+[diff]
+	tool = vimdiff
+[diff "difftool"]
+	prompt = false
+[alias]
+	d = difftool
+	push = git-push-with-hooks
+	ctags = !.git/hooks/ctags
+  sed = ! git grep -z --full-name -l '.' | xargs -0 sed -i -e
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[init]
+	templatedir = ~/.git_template
+[push]
+	default = simple

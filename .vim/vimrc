@@ -1,0 +1,457 @@
+" Adapted from https://github.com/akitaonrails/vimfiles 
+
+filetype on
+
+runtime available-bundles/vim-unbundle/unbundle.vim
+
+"Use Vim settings, rather then Vi settings (much better!).
+"This must be first, because it changes other options as a side effect.
+set nocompatible
+
+let mapleader=" "
+let maplocalleader = " "
+
+"disable visual bell
+set visualbell t_vb=
+
+"indent settings
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.rs set filetype=rust
+au BufRead,BufNewFile *.install set filetype=sh
+
+"load ftplugins and indent files
+silent! nnoremap <silent> <Leader>p :NERDTreeToggle<CR>
+
+set hlsearch
+"make <c-l> clear the highlight as well as redraw
+nnoremap <C-L> :nohls<CR><C-L>
+inoremap <C-L> <C-O>:nohls<CR>
+
+"map to bufexplorer
+nnoremap <leader>b :BufExplorer<cr>
+
+set wildmode=list:longest   "make cmdline tab completion similar to bash
+set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore=*.o,*.obj,*~,*.class,.git,*.swp,*.log "stuff to ignore when tab completing
+set wildignore+=*/node_modules/*,*.jar,*.class
+
+"mark syntax errors with :signs
+let g:syntastic_enable_signs=1
+
+" Deprecated, shift+r already does this
+" Search and replace highlighted text
+"vnoremap <C-r> "hy:%s/\<<C-r>h\>//gc<left><left><left>
+
+"Command-T configuration
+let g:CommandTMaxHeight=10
+let g:CommandTMatchWindowAtTop=0
+
+"set background=light
+set t_Co=256
+set bg=dark
+
+set background=dark
+colorscheme ir_dark.256
+
+"turn on syntax highlighting
+syntax on
+
+"load ftplugins and indent files
+filetype plugin indent on
+
+"autocmd FileType clojure,lisp :AutoCloseOff
+" smart frog
+au BufRead,BufNewFile *.sf set filetype=java
+
+" in vimdiff, press du to undo
+nnoremap du :wincmd w<cr>:normal u<cr>:wincmd w<cr>
+
+set nowrap
+
+" http://vim.wikia.com/wiki/Easy_edit_of_files_in_the_same_directory
+cabbr <expr> %% expand('%:p:h')
+
+" don't warn about unsaved buffer
+set hidden
+
+" Default conflicts with yank ring
+noremap <silent> <leader>t :CtrlP<CR>
+let g:ctrlp_working_path_mode = 0
+
+autocmd FileType scala set autoindent | set si | set shiftwidth=2 | set cinoptions+=j1
+autocmd FileType jade set cindent
+
+au BufRead,BufNewFile *.rl setfiletype ragel
+
+nnoremap <F9> :set paste!<BAR>:set paste?<CR>
+
+"noremap <F6> :w <BAR> :silent execute "!tmux send-key -t resume:3.1 'xelatex -halt-on-error resume.tex' C-m" <BAR> redraw! <CR>
+"call arpeggio#map('nv', '', 0, 'jl', ':w <BAR> :silent execute "!tmux send-key -t resume:3.1 \"xelatex -halt-on-error resume.tex\" C-m" <BAR> redraw! <CR>')
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+set rnu
+
+" hi CursorLine term=NONE cterm=NONE ctermbg=88
+" au InsertEnter * set cursorline
+" au InsertLeave * set nocursorline
+
+set ignorecase
+set smartcase
+
+nnoremap <leader>s :source $MYVIMRC<CR>
+nnoremap <leader>e :vsplit $MYVIMRC<cr>
+
+" ultisnips
+noremap <Leader>u :UltiSnipsEdit<CR>
+let g:UltiSnipsSnippetsDir="~/.vim/myultisnips"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsSnippetDirectories=["myultisnips"]
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "myultisnips"]
+
+" Leaving this on causes "no such mapping" exceptions
+let g:UltiSnipsRemoveSelectModeMappings = 0
+
+" vim commentary
+autocmd FileType snippets set commentstring=#\ %s
+autocmd FileType nginx set commentstring=#\ %s | set smartindent
+autocmd FileType mustache set commentstring={{!\ %s\ }}
+autocmd FileType less set commentstring=//\ %s
+autocmd FileType rust set commentstring=//\ %s
+autocmd FileType go set commentstring=//\ %s
+autocmd FileType tex set commentstring=%\ %s
+autocmd FileType erlang set commentstring=%%\ %s
+autocmd FileType lua set commentstring=--\ %s
+autocmd FileType sql set commentstring=--\ %s
+autocmd FileType lua set sw=2
+autocmd FileType lisp set commentstring=;\ %s
+autocmd FileType xdefaults set commentstring=!\ %s
+autocmd FileType c set commentstring=//\ %s
+" autocmd FileType dot set commentstring={{//\ %s
+autocmd FileType dot set commentstring=//\ %s
+autocmd FileType dot set cindent
+autocmd FileType cabal set commentstring=--\ %s
+autocmd FileType markdown set commentstring=//\ %s
+" autocmd FileType lithtml set commentstring=//com %s
+
+" Show letter prefix for lusty juggler
+" let g:LustyJugglerShowKeys = 'a'
+
+au BufRead,BufNewFile */nginx/conf/* set ft=nginx | set smartindent
+au BufRead,BufNewFile *.handlebars set ft=mustache
+au BufRead,BufNewFile *.lua set ft=lua
+au BufRead,BufNewFile *.do set ft=sh
+au BufRead,BufNewFile *.less set ft=less
+au BufRead,BufNewFile *.clj set ft=clojure
+au BufRead,BufNewFile *.cljs set ft=clojure
+au BufRead,BufNewFile *.js set foldmethod=manual
+au BufRead,BufNewFile PKGBUILD* set ft=sh
+" au BufRead,BufNewFile *.lithtml set ft=html.lithtml
+au BufRead,BufNewFile *.lithtml set ft=html
+set ts=2
+
+
+let g:ackprg="ack -H --type-add less=.less --nocolor --nogroup --column --ignore-dir=node_modules --ignore-dir=dist --ignore-dir=google-code-prettify --ignore-dir=r.js"
+
+let Grep_Default_Options = '-I'
+let Grep_Skip_Dirs = '.git' 
+
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+
+" inoremap {<CR> {<CR>}<Esc>O
+nnoremap <Leader>j ddkP
+nnoremap <Leader>k ddp
+
+set noesckeys
+
+" http://vim.wikia.com/wiki/Backspace_and_delete_problems
+set backspace=2
+set nofoldenable
+
+set cinkeys-=0#
+set indentkeys-=0#
+
+xmap \  <Plug>Commentary
+" nmap \  <Plug>Commentary
+nmap \ <Plug>CommentaryLine
+" nmap \u <Plug>CommentaryUndo
+
+noremap <Leader>c <Plug>CommentaryLine
+" map <Leader>u <Plug>CommentaryUndo
+
+set timeoutlen=500
+" nnoremap ;w :w<CR>
+nnoremap <Leader>dsb $ma%ddkV'aj<kdd
+
+" emacs/bash transpose
+" conflicts with tag stack
+" nnoremap <C-t> xhP
+
+function! SplitSync()
+  set scrollbind
+  set cursorbind
+  set cursorline
+  set cursorcolumn
+endfunction
+
+nnoremap <Leader>ss :call SplitSync()<Cr>
+
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'passive_filetypes': ['c'] }
+
+nnoremap <Leader>cc :call ctrlp#clr()<CR>
+" set enc=utf-8
+" set fillchars=vert:\│
+" set fillchars=vert:│    " that's a vertical box-drawing character
+" set fillchars=vert:\│    " that's a vertical box-drawing character
+"
+" let g:dbext_default_profile_postgresql = 'type=pgsql:user=jack:dbname=typing'
+let g:dbext_default_profile_postgres = 'type=pgsql:user=jack:dbname=typing'
+" let g:dbext_default_profile_postgresql = 'type=pgsql:dbname=typing'
+" :DBSetOption user=jack:dbname=typing
+let g:omni_sql_include_owner = 0
+" let g:dbext_default_profile_postgres = 'type=DBI:user=typing:driver=Pg'
+" let g:dbext_default_profile_postgres = 'type=DBI:user=jack:dbname=typing:driver=Pg'
+" let g:dbext_default_profile_postgres = 'type=DBI:user=jack:dbname=typing:driver=Pg:conn_parms=DBN=typing:driver_parms=AutoCommit=0'
+" let g:dbext_default_profile_postgres = 'type=DBI:user=jack:dbname=typing:driver=Pg:conn_parms=DBN=typing'
+" let g:dbext_default_profile_postgres = 'type=DBI:user=jack:dbname=typing:driver=Pg:conn_parms=DBN=typing'
+" let g:dbext_default_profile_postgres = 'type=DBI:user=typing:dbname=typing:driver=Pg:conn_parms=DBN=typing'
+" let g:dbext_default_profile_postgres = 'type=DBI:user=typing:dbname=typing:driver=Pg'
+" let g:dbext_default_profile_postgres = 'type=DBI:user=jack:dbname=typing:driver=Pg'
+" let g:dbext_default_profile_postgres = 'type=DBI:user=jack:driver=Pg:conn_parms=DBN=typing'
+" let g:dbext_default_profile_postgres = 'type=DBI:user=jack:driver=Pg:conn_parms=DBN=typing'
+" let g:dbext_default_profile_postgres = 'type=DBI:user=jack:driver=Pg:conn_parms=database=typing'
+" let g:dbext_default_profile_postgres = 'type=DBI:user=jack:driver=Pg:dbname=typing'
+" let g:dbext_default_profile_postgres = 'type=DBI:driver=Pg:dbname=typing:username=jack'
+" let g:dbext_default_profile_postgres = 'type=DBI:user=jack:dbname=typing:driver=Pg'
+" let g:dbext_default_profile_postgres = 'type=DBI:user=jack:driver=Pg:conn_parms=DBN=typing'
+" let g:dbext_default_profile_postgres = 'type=DBI:driver=Pg:conn_parms=dbname=typing'
+" let g:dbext_default_profile_postgres = 'type=DBI:driver=ODBC:user=jack:dsnname=typing'
+" let g:dbext_default_profile_postgres = 'type=DBI:driver=ODBC:user=jack:dbname=typing'
+" let g:dbext_default_profile_postgres = 'type=DBI:driver=Pg:conn_parms=dbname=typing;host=localhost'
+" let g:dbext_default_profile_postgres = 'type=DBI:driver=Pg'
+" DBSetOption conn_parms=dbname=typing
+" let g:dbext_default_profile_postgres = 'type=DBI:driver=Pg'
+
+
+" let g:dbext_default_profile_postgres = 'type=DBI:driver=Pg:conn_parms=user=jack;dbname=typing'
+" let g:dbext_default_profile_postgres = 'type=DBI:driver=Pg:conn_parms=user=jack;dbname=typing:driver_parms=AutoCommit=0'
+" let g:dbext_default_profile_postgres = 'type=DBI:driver=Pg:conn_parms=user=jack;dbname=typing;AutoCommit=0'
+let g:dbext_default_profile = 'postgres'
+:let  g:dbext_default_DBI_commit_on_disconnect = 0
+
+
+" let g:dbext_dbi_debug = 'true'
+" let g:dbext_default_profile = 'postgresql'
+let g:dbext_default_prompt_for_parameters=0
+
+noremap <silent> <leader>n :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
+
+" " Use CTRL-S for saving, also in Insert mode
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <C-O>:update<CR>
+
+let g:no_rust_conceal = 1
+
+" when reading from stdin, dont warn about saving on close
+" usually temp files, only using vim as better pager
+" http://vim.1045645.n5.nabble.com/q-and-stdin-td1188574.html
+au StdinReadPost * :set nomodified
+highlight Folded ctermbg=236
+" highlight VertSplit ctermbg=154
+highlight StatusLine ctermbg=19
+highlight StatusLineNC ctermbg=17
+highlight StatusLineNC ctermfg=254
+
+" set cursorcolumn
+" set cursorline
+" highlight cursorcolumn ctermbg=234 ctermfg=none
+" highlight cursorline ctermbg=234 ctermfg=none
+
+" autocmd insertenter * highlight cursorcolumn ctermbg=124
+" autocmd insertleave * highlight cursorcolumn ctermbg=234
+
+" set t_SI=^[[5\ q
+"       set t_EI=^[[\ q
+  " " let &t_SI = "\<Esc>]12;orange\x7"
+  " let &t_SI = "\<Esc>]38;197\x7"
+
+  " " start_color_def="\\o033[38;05;"
+  " " let &t_SI = "\o033[38;05;76m"
+  " " use a red cursor otherwise
+  " let &t_EI = "\<Esc>]12;red\x7"
+  " silent !echo -ne "\033]12;red\007"
+  " " reset cursor when vim exits
+  " autocmd VimLeave * silent !echo -ne "\033]112\007"
+  " use \003]12;gray\007 for gnome-terminal
+
+" switch cursor from block in insert mode
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" This enables iterm cursor changes from vim. In .tmux.conf you'll need:
+" set-option -g terminal-overrides '*88col*:colors=88,*256col*:colors=256,xterm*:XT:Ms=\E]52;%p1%s;%p2%s\007:Cc=\E]12;%p1%s\007:Cr=\E]112\007:Cs=\E]50;CursorShape=%?%p1%{3}%<%t%{0}%e%p1%{2}%-%;%d\007'
+"
+" Source: https://github.com/Casecommons/casecommons_workstation/blob/master/templates/default/dot_tmux.conf.erb
+"         https://github.com/Casecommons/vim-config/blob/master/init/tmux.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" if exists('$ITERM_PROFILE')
+"   if exists('$TMUX')
+    " let &t_SI = "\<Esc>[3 q"
+    " let &t_EI = "\<Esc>[0 q"
+  " else
+  "   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  "   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  " endif
+" end
+
+" " if exists('$TMUX')
+"   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+"   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+" " else
+"   " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"   " let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" " endif
+
+" " if &term =~ "xterm\\|rxvt"
+"   " use an orange cursor in insert mode
+"   let &t_SI = "\<Esc>]12;orange\x7"
+"   " use a red cursor otherwise
+"   let &t_EI = "\<Esc>]12;red\x7"
+"   silent !echo -ne "\033]12;red\007"
+"   " reset cursor when vim exits
+"   autocmd VimLeave * silent !echo -ne "\033]112\007"
+"   " use \003]12;gray\007 for gnome-terminal
+" " endif
+" " highlight Cursor ctermbg=118
+
+" if &term =~ "xterm\\|rxvt"
+  " " use an orange cursor in insert mode
+  " let &t_SI = "\<Esc>]12;orange\x7"
+  " " use a red cursor otherwise
+  " let &t_EI = "\<Esc>]12;red\x7"
+  " silent !echo -ne "\033]12;red\007"
+  " " reset cursor when vim exits
+  " autocmd VimLeave * silent !echo -ne "\033]112\007"
+  " " use \003]12;gray\007 for gnome-terminal
+" endif
+"
+" autocmd VimEnter /home/jack/code/designer/* source /home/jack/code/designer/project-vimrc
+
+function! CustomTmux()
+  silent !tmux send-key -t :4.1 "redo all && head unix_shells.cards" && tmux send-key -t :4.1 "Enter"
+endfunction
+
+" autocmd! BufWritePost /home/jack/secure/code/scraping-boilerplate/*
+" autocmd BufWritePost /home/jack/secure/code/scraping-boilerplate/* call CustomTmux()
+
+function! TextEnableCodeSnip(filetype,start,end,textSnipHl) abort
+  let ft=toupper(a:filetype)
+  let group='textGroup'.ft
+  if exists('b:current_syntax')
+    let s:current_syntax=b:current_syntax
+    " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
+    " do nothing if b:current_syntax is defined.
+    unlet b:current_syntax
+  endif
+  execute 'syntax include @'.group.' syntax/'.a:filetype.'.vim'
+  try
+    execute 'syntax include @'.group.' after/syntax/'.a:filetype.'.vim'
+  catch
+  endtry
+  if exists('s:current_syntax')
+    let b:current_syntax=s:current_syntax
+  else
+    unlet b:current_syntax
+  endif
+  execute 'syntax region textSnip'.ft.'
+  \ matchgroup='.a:textSnipHl.'
+  \ start="'.a:start.'" end="'.a:end.'"
+  \ contains=@'.group
+endfunction
+
+" call TextEnableCodeSnip(  'mustache',   '{{',   '}}', 'SpecialComment')
+" unc GitGrep(...)
+  " let save = &grepprg
+  " set grepprg=git\ grep\ -n\ $*
+  " let s = 'grep'
+  " for i in a:000
+  "   let s = s . ' ' . i
+  " endfor
+  " exe s
+  " let &grepprg = save
+" endfun
+" command -nargs=? G call GitGrep(<f-args>)
+
+" Use ctags generated from cabal source files
+au BufRead,BufNewFile *.hs set tags=./tags,/home/jack/code/cabal-sources-hasktags/ctags
+" Prevent editing original files
+au BufRead /home/jack/code/cabal-sources-hasktags/*.hs set ro
+" http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
+" make browsing around source files easier
+" autocmd BufEnter /home/jack/code/cabal-sources-hasktags/*.hs silent! lcd %:p:h
+
+" make matches look less like cursor
+" hi MatchParen ctermfg=208 ctermbg=none
+hi MatchParen ctermfg=208 ctermbg=none
+" hi CursorLine cterm=bold ctermfg=154 ctermbg=none
+
+set cursorline
+
+" disable existing cursorline styles like underlining
+highlight CursorLine cterm=NONE
+
+" highlight current line number green
+highlight CursorLineNR ctermfg=112
+
+au InsertEnter * highlight Cursorline ctermbg=233
+au InsertEnter * highlight CursorLineNR ctermfg=196
+
+au InsertLeave * highlight Cursorline ctermbg=none
+au InsertLeave * highlight CursorLineNR ctermfg=112
+
+" hi CursorLine cterm=NONE
+
+" highlight LineNr ctermfg=grey
+" highlight CursorLineNR ctermfg=green
+
+" set cursorline
+
+" " stash settings for editing prose
+" set wrap
+" set linebreak
+" setlocal spell spelllang=en_us
+"
+
+" complete variable names containing hyphens 
+" http://stackoverflow.com/questions/10789430/vims-ctrlp-autocomplete-for-identifiers-with-dash
+set lisp
+
+" set spell spelllang=en_us
+
+" let g:pasta_enabled_filetypes = ['ruby', 'javascript', 'css', 'sh', 'jade']
+let g:pasta_disabled_filetypes = ['python', 'coffee', 'yaml', 'jade']

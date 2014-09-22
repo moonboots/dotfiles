@@ -1,0 +1,4 @@
+-- http://sql-info.de/postgresql/notes/how-to-ensure-you-are-in-a-transaction.html
+-- \set PROMPT1 '%/%R%x%# '
+-- \set AUTOCOMMIT off
+\x auto

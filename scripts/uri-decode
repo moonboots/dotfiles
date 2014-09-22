@@ -1,0 +1,2 @@
+#!/bin/sh
+perl -MURI::Escape -e 'print uri_unescape($ARGV[0]);' $1
